@@ -7,7 +7,7 @@
   constructor(){
     this.miss = 0;
     this.phrases = ['hello', 'africa', 'tell', 'meow', 'congrolamate'];
-    this.activePhrase = 'null';
+    this.activePhrase = null
   }
 
   getRandomPhrase() {
@@ -19,14 +19,11 @@
   startGame(){
     let hideOverlay = document.getElementById('overlay');
     hideOverlay.style.display = 'none';
-    // const game = new Game();
-    // let randomPhrase = this.getRandomPhrase();
-    // let active = this.activePhrase;
-    // active = randomPhrase;
-    this.activePhrase = this.getRandomPhrase();
-    // game.activePhrase = randomPhrase;
-    // const phrase = game.activePhrase;
-    this.activePhrase.addPhraseToDisplay();
+    let randomPhrase = this.getRandomPhrase();
+    let phrase = this.activePhrase;
+    phrase = randomPhrase;
+    // this.activePhrase = this.getRandomPhrase();
+    phrase.addPhraseToDisplay();
   }
 
 
@@ -52,7 +49,7 @@
       var liElements = document.querySelectorAll('#phrase li');
       var sentinal = true;
       for(let i = 0; i < liElements.length; i++) {
-        if(!(liElements[i].className == "show letter" || liElements[i].className == "space")) {
+        if(!(liElements[i].className == "show char" || liElements[i].className == "space")) {
           sentinal = false;
        }
     }
@@ -63,7 +60,7 @@
 // ---------------------------------------------------------------
 //   checkForWin(){
 //     var elementsLi = document.querySelectorAll('#phrase li');
-//     const filteredElements = elementsLi.filter(element => { element.className === "show letter" ? true : false})
+//     const filteredElements = elementsLi.filter(element => { element.className === "show char" ? true : false})
 //       if(filteredElements.length === phrase.length){
 //         return true;
 //       }
@@ -90,16 +87,17 @@
   }
 
 
-// Fill this method later ...
+// Fill this method later ... Already hard coded up below constructor method.
+
   createPhrases() {
   }
 
   handleInteraction(button) {
-    var letter = button.textContent;
-    //console.log(this.activePhrase.checkLetter(letter));
+    var char = button.textContent;
+    //console.log(this.activePhrase.checkchar(char));
     button.disabled = 'true';
-    if(this.activePhrase.checkLetter(letter)){
-      this.activePhrase.showMatchedLetter(letter);
+    if(this.activePhrase.checkLetter(char)){
+      this.activePhrase.showMatchedLetter(char);
       button.classList.add('chosen');
       if(this.checkForWin()){
         this.gameOver(true);

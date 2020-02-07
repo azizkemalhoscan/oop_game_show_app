@@ -4,7 +4,7 @@
 
  class Phrase {
   constructor(phrase){
-    this.phrase = phrase.toLowerCase();
+    this.phrase = phrase;
   }
 
       /*
@@ -16,7 +16,6 @@
 
 
   addPhraseToDisplay(){
-
     for(let i=0; i < this.phrase.length; i++){
       let li = document.createElement('LI');
       li.innerHTML = this.phrase[i];
@@ -25,8 +24,8 @@
       } else if (this.phrase[i].match(/\s/)) {
         li.classList.add("space");
       }
-      document.querySelector('#phrase ul').appendChild(li);
     }
+      document.querySelector('#phrase ul').appendChild(li);
   }
 
 
