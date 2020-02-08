@@ -24,8 +24,8 @@
       } else if (this.phrase[i].match(/\s/)) {
         li.classList.add("space");
       }
-    }
       document.querySelector('#phrase ul').appendChild(li);
+    }
   }
 
 

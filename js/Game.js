@@ -6,8 +6,11 @@
  class Game {
   constructor(){
     this.miss = 0;
-    this.phrases = ['hello', 'africa', 'tell', 'meow', 'congrolamate'];
-    this.activePhrase = null
+    // This is for me --I struglled here a lot because I wasnt paying attention to the type of objects.
+    // I hard coded strings belove but It was expecting me to construct new Phrase objects
+    // so I changed
+    this.phrases = [new Phrase('hello'), new Phrase('hello'), new Phrase('hello'), new Phrase('hello'), new Phrase('hello')];
+    this.activePhrase = this.getRandomPhrase();
   }
 
   getRandomPhrase() {
@@ -28,43 +31,32 @@
 
 
 
-  // handleInteraction(){
+  handleInteraction(){
 
-  // }
+  }
 
 
-// INVESTIGATE THIS CODE **
-// createPhrases() {
-//     var phrase = [new Phrase("Looks like we got another mystery on our hands"),
-//             new Phrase("Would you do it for a Scooby Snack"),
-//             new Phrase("What would you do for a Klondike bar"),
-//             new Phrase("The best time to wear a striped sweater is all the time"),
-//             new Phrase("No soup for you")];
-//     //var phrase = [];
-//     //phrase.push(new Phrase("Looks like we have got another mystery on our hands"));
-//     return phrase;
-//   }
-  checkForWin() {
-    console.log(liElements);
-      var liElements = document.querySelectorAll('#phrase li');
-      var sentinal = true;
-      for(let i = 0; i < liElements.length; i++) {
-        if(!(liElements[i].className == "show char" || liElements[i].className == "space")) {
-          sentinal = false;
-       }
-    }
-    console.log("checkforwin is " + sentinal);
-     return sentinal;
-  };
-
-// ---------------------------------------------------------------
-//   checkForWin(){
-//     var elementsLi = document.querySelectorAll('#phrase li');
-//     const filteredElements = elementsLi.filter(element => { element.className === "show char" ? true : false})
-//       if(filteredElements.length === phrase.length){
-//         return true;
-//       }
+//   checkForWin() {
+//     console.log(liElements);
+//       var liElements = document.querySelectorAll('#phrase li');
+//       var sentinal = true;
+//       for(let i = 0; i < liElements.length; i++) {
+//         if(!(liElements[i].className == "show char" || liElements[i].className == "space")) {
+//           sentinal = false;
+//        }
 //     }
+//     console.log("checkforwin is " + sentinal);
+//      return sentinal;
+//   };
+
+// // ---------------------------------------------------------------
+  checkForWin(){
+    var elementsLi = document.querySelectorAll('#phrase li');
+    const filteredElements = elementsLi.filter(element => { element.className === "show char" ? true : false})
+      if(filteredElements.length === phrase.length){
+        return true;
+      }
+    }
 
   removeLife(char){
     this.miss += 1;
