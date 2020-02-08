@@ -9,7 +9,7 @@
     // This is for me --I struglled here a lot because I wasnt paying attention to the type of objects.
     // I hard coded strings belove but It was expecting me to construct new Phrase objects
     // so I changed
-    this.phrases = [new Phrase('hello'), new Phrase('ea sports'), new Phrase('taksim'), new Phrase('inigeym'), new Phrase('buycak')];
+    this.phrases = [new Phrase('o'), new Phrase('ea sports'), new Phrase('taksim'), new Phrase('inigeym'), new Phrase('buycak')];
     this.activePhrase = this.getRandomPhrase();
   }
 
@@ -29,11 +29,6 @@
     phrase.addPhraseToDisplay();
   }
 
-
-
-  handleInteraction(){
-
-  }
 
 
   checkForWin() {
@@ -86,20 +81,39 @@
   createPhrases() {
   }
 
-  handleInteraction(button) {
-    var char = button.textContent;
-    //console.log(this.activePhrase.checkchar(char));
-    button.disabled = 'true';
-    if(this.activePhrase.checkLetter(char)){
-      this.activePhrase.showMatchedLetter(char);
-      button.classList.add('chosen');
+  handleInteraction(button){
+    var key = button.textContent;
+    console.log(key);
+    // alter this.
+    // button.remove();
+    if(this.activePhrase.checkLetter(key)){
+      button.className = 'chosen';
+      this.activePhrase.showMatchedLetter(key);
       if(this.checkForWin()){
-        this.gameOver(true);
+        this.gameOver(gameWon);
       }
-    }else{
+    } else {
+      button.className = 'wrong';
       this.removeLife();
-      button.classList.add('wrong');
-    }
+      if(this.checkForWin()){
+        this.gameOver(false);
+      }
   }
+}
+  // handleInteraction(button) {
+  //   var char = button.textContent;
+  //   //console.log(this.activePhrase.checkchar(char));
+  //   button.disabled = 'true';
+  //   if(this.activePhrase.checkLetter(char)){
+  //     this.activePhrase.showMatchedLetter(char);
+  //     button.classList.add('chosen');
+  //     if(this.checkForWin()){
+  //       this.gameOver(true);
+  //     }
+  //   }else{
+  //     this.removeLife();
+  //     button.classList.add('wrong');
+  //   }
+  // }
 }
 
