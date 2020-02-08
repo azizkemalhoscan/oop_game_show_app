@@ -17,3 +17,10 @@ document.getElementById('btn__reset').addEventListener('click', () => {
   console.log(game.phrases);
   console.log(game.activePhrase);
 })
+
+// Bugs
+
+/*
+  Active phrase and the phrase that is logged to the
+  dom does not match
+*/

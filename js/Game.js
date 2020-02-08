@@ -9,7 +9,7 @@
     // This is for me --I struglled here a lot because I wasnt paying attention to the type of objects.
     // I hard coded strings belove but It was expecting me to construct new Phrase objects
     // so I changed
-    this.phrases = [new Phrase('hello'), new Phrase('hello'), new Phrase('hello'), new Phrase('hello'), new Phrase('hello')];
+    this.phrases = [new Phrase('hello'), new Phrase('ea sports'), new Phrase('taksim'), new Phrase('inigeym'), new Phrase('buycak')];
     this.activePhrase = this.getRandomPhrase();
   }
 
@@ -36,45 +36,47 @@
   }
 
 
-//   checkForWin() {
-//     console.log(liElements);
-//       var liElements = document.querySelectorAll('#phrase li');
-//       var sentinal = true;
-//       for(let i = 0; i < liElements.length; i++) {
-//         if(!(liElements[i].className == "show char" || liElements[i].className == "space")) {
-//           sentinal = false;
-//        }
-//     }
-//     console.log("checkforwin is " + sentinal);
-//      return sentinal;
-//   };
-
-// // ---------------------------------------------------------------
-  checkForWin(){
-    var elementsLi = document.querySelectorAll('#phrase li');
-    const filteredElements = elementsLi.filter(element => { element.className === "show char" ? true : false})
-      if(filteredElements.length === phrase.length){
-        return true;
-      }
+  checkForWin() {
+      var liElements = document.querySelectorAll('#phrase li');
+      var sentinal = true;
+      for(let i = 0; i < liElements.length; i++) {
+        if(!(liElements[i].className == "show char" || liElements[i].className == "space")) {
+          sentinal = false;
+       }
     }
+    console.log("checkforwin is " + sentinal);
+     return sentinal;
+  };
+
+// // // ---------------------------------------------------------------
+//   checkForWin(){
+//     var elementsLi = document.querySelectorAll('#phrase li');
+//     const filteredElements = elementsLi.filter(element => { element.className === "show char" ? true : false})
+//       if(filteredElements.length === phrase.length){
+//         return true;
+//       }
+//     }
 
   removeLife(char){
     this.miss += 1;
     if(this.miss < 5){
-      var orderedList = document.getElementById('#scoreboard').firstElementChild;
-      ol.removeChild(ol.firstElementChild);
+      var orderedList = document.getElementById('scoreboard').firstElementChild;
+      orderedList.removeChild(orderedList.firstElementChild);
     } else {
-      gameOver(false);
+      this.gameOver(false);
     }
   }
 
   gameOver(gameWon){
     var gameOverMessage = document.getElementById('game-over-message');
     var overLay = document.getElementById('overlay');
+    // You can add some css to overlay
     if(gameWon){
       gameOverMessage.innerHTML = "YOU WON! GREAT!";
+      overLay.style.display = 'block';
     } else {
-      gameOverMessage.innerHtml = "BAD LUCK Try AGAIN!";
+      gameOverMessage.innerHTML = "BAD LUCK TRY AGAIN!";
+      overLay.style.display = 'block';
     }
   }
 
