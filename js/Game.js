@@ -35,7 +35,7 @@
       var liElements = document.querySelectorAll('#phrase li');
       var sentinal = true;
       for(let i = 0; i < liElements.length; i++) {
-        if(!(liElements[i].className == "show char" || liElements[i].className == "space")) {
+        if(!(liElements[i].className == "show letter" || liElements[i].className == "space")) {
           sentinal = false;
        }
     }
@@ -90,7 +90,7 @@
       button.className = 'chosen';
       this.activePhrase.showMatchedLetter(key);
       if(this.checkForWin()){
-        this.gameOver(gameWon);
+        this.gameOver(true);
       }
     } else {
       button.className = 'wrong';
