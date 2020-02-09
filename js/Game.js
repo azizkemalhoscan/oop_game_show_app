@@ -1,6 +1,3 @@
-/* Treehouse FSJS Techdegree
- * Project 4 - OOP Game App
- * Game.js */
 
 
  class Game {
@@ -9,7 +6,7 @@
     // This is for me --I struglled here a lot because I wasnt paying attention to the type of objects.
     // I hard coded strings belove but It was expecting me to construct new Phrase objects
     // so I changed
-    this.phrases = [new Phrase('o'), new Phrase('ea sports'), new Phrase('taksim'), new Phrase('inigeym'), new Phrase('buycak')];
+    this.phrases = [new Phrase('asli'), new Phrase('burcak'), new Phrase('taksim'), new Phrase('inigeym'), new Phrase('dila')];
     this.activePhrase = this.getRandomPhrase();
   }
 
@@ -29,28 +26,37 @@
     phrase.addPhraseToDisplay();
   }
 
-
+  resetGame(){
+      let button = document.querySelectorAll('.keyrow button');
+      let hideOverlay = document.getElementById('overlay');
+      hideOverlay.style.display = 'block';
+      for(let i = 0; i < button.length; i++){
+        button[i].classList.remove('wrong');
+        button[i].classList.remove('chosen');
+        button[i].classList.add('key');
+      }
+    // if(game.checkForWin === true || game.miss > 4){
+      // const linkElements = document.querySelector('#phrase li');
+      // button.disabled = 'false';
+      let parent = document.querySelector('#phrase ul');
+      while (parent.firstChild){
+        parent.firstChild.remove();
+     }
+      // linkElements.innerHTML = " ";
+    // }
+  }
 
   checkForWin() {
       var liElements = document.querySelectorAll('#phrase li');
-      var sentinal = true;
+      var checkWinStatus = true;
       for(let i = 0; i < liElements.length; i++) {
         if(!(liElements[i].className == "show letter" || liElements[i].className == "space")) {
-          sentinal = false;
+          checkWinStatus = false;
        }
     }
-    console.log("checkforwin is " + sentinal);
-     return sentinal;
+    console.log("checkforwin is " + checkWinStatus);
+     return checkWinStatus;
   };
-
-// // // ---------------------------------------------------------------
-//   checkForWin(){
-//     var elementsLi = document.querySelectorAll('#phrase li');
-//     const filteredElements = elementsLi.filter(element => { element.className === "show char" ? true : false})
-//       if(filteredElements.length === phrase.length){
-//         return true;
-//       }
-//     }
 
   removeLife(char){
     this.miss += 1;
@@ -76,7 +82,6 @@
   }
 
 
-// Fill this method later ... Already hard coded up below constructor method.
 
   createPhrases() {
   }
@@ -99,21 +104,6 @@
         this.gameOver(false);
       }
   }
-}
-  // handleInteraction(button) {
-  //   var char = button.textContent;
-  //   //console.log(this.activePhrase.checkchar(char));
-  //   button.disabled = 'true';
-  //   if(this.activePhrase.checkLetter(char)){
-  //     this.activePhrase.showMatchedLetter(char);
-  //     button.classList.add('chosen');
-  //     if(this.checkForWin()){
-  //       this.gameOver(true);
-  //     }
-  //   }else{
-  //     this.removeLife();
-  //     button.classList.add('wrong');
-  //   }
-  // }
+ }
 }
 

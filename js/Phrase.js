@@ -32,6 +32,7 @@
   }
 
 
+
   checkLetter(char){
     if(this.phrase.indexOf(char) > -1){
       return true;
@@ -50,4 +51,7 @@
       }
     }
   }
+
+
 }
+
