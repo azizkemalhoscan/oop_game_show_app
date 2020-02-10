@@ -6,7 +6,7 @@
     // This is for me --I struglled here a lot because I wasnt paying attention to the type of objects.
     // I hard coded strings belove but It was expecting me to construct new Phrase objects
     // so I changed
-    this.phrases = [new Phrase('asli'), new Phrase('burcak'), new Phrase('taksim'), new Phrase('inigeym'), new Phrase('dila')];
+    this.phrases = this.createPhrases();
     this.activePhrase = this.getRandomPhrase();
   }
 
@@ -47,11 +47,18 @@
   }
 
   checkForWin() {
+    var count = 0
       var liElements = document.querySelectorAll('#phrase li');
-      var checkWinStatus = true;
+      var checkWinStatus = false;
+      this.activePhrase.showMatchedLetter(key);
       for(let i = 0; i < liElements.length; i++) {
-        if(!(liElements[i].className == "show letter" || liElements[i].className == "space")) {
-          checkWinStatus = false;
+        if((liElements[i].className === "show letter" || liElements[i].className == "space")) {
+          count += 1
+          if (count === liElements.length){
+            checkWinStatus = true;
+            return checkWinStatus;
+          }
+          return checkWinStatus;
        }
     }
     console.log("checkforwin is " + checkWinStatus);
@@ -84,6 +91,14 @@
 
 
   createPhrases() {
+    var phrase = [new Phrase("yurtta sulh cihanda sulh"),
+            new Phrase("ben sporcunun zeki cevik ve ahlaklisini severim"),
+            new Phrase("sanatsiz kalmis bir milletin hayat damarlarindan biri kopmus demektir. "),
+            new Phrase("everything we see in the world is the creative work of women."),
+            new Phrase("everything negative - pressure, challenges - is all an opportunity for me to rise.")];
+    //var phrase = [];
+    //phrase.push(new Phrase("Looks like we have got another mystery on our hands"));
+    return phrase;
   }
 
   handleInteraction(button){

@@ -10,8 +10,8 @@
 //   game.startGame();
 // })
 
-let button = document.querySelectorAll('.keyrow button');
-console.log(button[0]);
+// let button = document.querySelectorAll('.keyrow button');
+// console.log(button[0]);
 
 
 let game = 'null';
@@ -19,10 +19,10 @@ game = new Game();
 let phrase = 'null';
 phrase = new Phrase(game.activePhrase);
 document.getElementById('btn__reset').addEventListener('click', () => {
-  if(game.checkForWin === false || game.miss < 5){
-    game.startGame();
-  } else if(game.gameOver(false)){
+  if(game.gameOver(true)){
     game.resetGame();
+  } else {
+    game.startGame();
   }
   // console.log(this.phrase);
   // console.log(game.activePhrase);
