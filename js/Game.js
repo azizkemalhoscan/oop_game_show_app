@@ -27,38 +27,38 @@
   }
 
   resetGame(){
-      let button = document.querySelectorAll('.keyrow button');
-      let hideOverlay = document.getElementById('overlay');
-      hideOverlay.style.display = 'block';
+    this.miss = 0;
+    let ulElement = document.querySelectorAll('#phrase ul');
+    let hearts = document.getElementsByClassName('tries');
+    ulElement[0].innerHTML = " ";
+    let button = document.querySelectorAll('.keyrow button');
+      // let hideOverlay = document.getElementById('overlay');
+      // hideOverlay.style.display = 'block';
+
+// THERE CAN BE A STRANGE BEHAVIOUR IN THE CODE BELOW
       for(let i = 0; i < button.length; i++){
+        button[i].disbaled = false;
         button[i].classList.remove('wrong');
         button[i].classList.remove('chosen');
         button[i].classList.add('key');
       }
-    // if(game.checkForWin === true || game.miss > 4){
-      // const linkElements = document.querySelector('#phrase li');
-      // button.disabled = 'false';
-      let parent = document.querySelector('#phrase ul');
-      while (parent.firstChild){
-        parent.firstChild.remove();
+        /*Do not forget this code*/
+     //  let parent = document.querySelector('#phrase ul');
+     //  while (parent.firstChild){
+     //    parent.firstChild.remove();
+     // }
+     for(let i = 0; i < hearts.length; i++){
+      hearts[i].firstElementChild.src = "images/liveHeart.png";
      }
-      // linkElements.innerHTML = " ";
-    // }
   }
 
+
   checkForWin() {
-    var count = 0
       var liElements = document.querySelectorAll('#phrase li');
-      var checkWinStatus = false;
-      this.activePhrase.showMatchedLetter(key);
+      var checkWinStatus = true;
       for(let i = 0; i < liElements.length; i++) {
-        if((liElements[i].className === "show letter" || liElements[i].className == "space")) {
-          count += 1
-          if (count === liElements.length){
-            checkWinStatus = true;
-            return checkWinStatus;
-          }
-          return checkWinStatus;
+        if((liElements[i].className === "wrong letter" || liElements[i].className == "space")) {
+            checkWinStatus = false;
        }
     }
     console.log("checkforwin is " + checkWinStatus);
@@ -78,11 +78,14 @@
   gameOver(gameWon){
     var gameOverMessage = document.getElementById('game-over-message');
     var overLay = document.getElementById('overlay');
+    overLay.style.display = 'block';
     // You can add some css to overlay
     if(gameWon){
+      gameOverMessage.className += 'win';
       gameOverMessage.innerHTML = "YOU WON! GREAT!";
       overLay.style.display = 'block';
     } else {
+      gameOverMessage.className += 'lose';
       gameOverMessage.innerHTML = "BAD LUCK TRY AGAIN!";
       overLay.style.display = 'block';
     }
@@ -105,20 +108,23 @@
     var key = button.textContent;
     console.log(key);
     // alter this.
-    // button.remove();
+    button.disbaled = true;
     if(this.activePhrase.checkLetter(key)){
-      button.className = 'chosen';
+      button.classList.add('chosen');
       this.activePhrase.showMatchedLetter(key);
-      if(this.checkForWin()){
-        this.gameOver(true);
-      }
+      // let deneme = document.querySelectorAll('.keyrow .key')
+
+      // if(countChosen === this.activePhrase.length){
+        // this.activePhrase.showMatchedLetter(key);
+        if(this.checkForWin()){
+          this.gameOver(true);
+        }
     } else {
       button.className = 'wrong';
       this.removeLife();
-      if(this.checkForWin()){
-        this.gameOver(false);
-      }
+      // if(this.checkForWin()){
+      //   this.gameOver(false);
+      // }
   }
  }
 }
-

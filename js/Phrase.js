@@ -19,12 +19,12 @@
 
 
   addPhraseToDisplay(){
-    for(let i=0; i < game.activePhrase.phrase.length; i++){
+    for(let i=0; i < this.phrase.length; i++){
       let li = document.createElement('LI');
-      li.innerHTML = game.activePhrase.phrase[i];
-      if(game.activePhrase.phrase[i].match(/[a-z]/i)){
-        li.classList.add(`hide`, `letter`, `${game.activePhrase.phrase[i]}`);
-      } else if (game.activePhrase.phrase[i].match(/\s/)) {
+      li.innerHTML = this.phrase[i];
+      if(this.phrase[i].match(/[a-z]/i)){
+        li.classList.add(`hide`, `letter`, `${this.phrase[i]}`);
+      } else if (this.phrase[i].match(/\s/)) {
         li.classList.add("space");
       }
       document.querySelector('#phrase ul').appendChild(li);
