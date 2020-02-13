@@ -1,55 +1,68 @@
-/* Treehouse FSJS Techdegree
- * Project 4 - OOP Game App
- * Phrase.js */
-
- class Phrase {
-  constructor(phrase){
-    this.phrase = phrase;
-  }
-
-      /*
-  STEP 6
-  Here I looped over element of randomly picked phrase.
-  and created list items relatively
+/*
+  1. Constructung Phrase class
 */
 
-
-// game.activePhrase.phrase --- you struglled aziz
-// Next time pay more attention to type of the objects you are manipualting
-
-
-  addPhraseToDisplay(){
-    for(let i=0; i < this.phrase.length; i++){
-      let li = document.createElement('LI');
-      li.innerHTML = this.phrase[i];
-      if(this.phrase[i].match(/[a-z]/i)){
-        li.classList.add(`hide`, `letter`, `${this.phrase[i]}`);
-      } else if (this.phrase[i].match(/\s/)) {
-        li.classList.add("space");
-      }
-      document.querySelector('#phrase ul').appendChild(li);
-    }
+class Phrase {
+  constructor(phrase){
+    this.phrase = phrase.toLowerCase();
   }
 
 
+/*
+ Display phrase on game board.
 
-  checkLetter(char){
-    if(this.phrase.indexOf(char) > -1){
+<div id="phrase" class="section">
+    <ul>
+        <li class="hide letter h">h</li>
+        <li class="hide letter o">o</li>
+        <li class="hide letter w">w</li>
+        <li class="space"> </li>
+        <li class="hide letter a">a</li>
+        <li class="hide letter r">r</li>
+        <li class="hide letter e">e</li>
+        <li class="space"> </li>
+        <li class="hide letter y">y</li>
+        <li class="hide letter o">o</li>
+        <li class="hide letter u">u</li>
+    </ul>
+</div>
+*/
+  addPhraseToDisplay(){
+    const selectUL = document.querySelector('#phrase ul');
+    // const LIElements = '';
+    for(let i =0; i < this.phrase.length; i++){
+      const LIElements = document.createElement('LI');
+      LIElements.textContent = this.phrase[i];
+      var space = /\s/;
+      if(space.test(this.phrase[i])){
+        LIElements.classList = 'space'
+      } else {
+        LIElements.classList = 'hide letter';
+      }
+      selectUL.appendChild(LIElements);
+    }
+  }
+//  Checks if passed letter is in the phrase
+  checkLetter(letter){
+    if(this.phrase.includes(letter)){
       return true;
     } else {
       return false;
     }
   }
 
+// shows matched letter in the phrase rather than placehodler
+// gets only the first index so it does not work
+  showMatchedLetter(letter){
 
-
-  showMatchedLetter(char){
-    var elementsLi = document.querySelectorAll('#phrase li');
-    for(let i = 0; i < elementsLi.length; i++){
-      if(elementsLi[i].innerHTML === char){
-        elementsLi[i].className = 'show letter';
+    let showedElements = document.getElementsByClassName('show letter')
+    var LIElements = document.querySelectorAll('li');
+    if(this.checkLetter(letter)){
+      for(let i = 0; i < LIElements.length; i++){
+        if(LIElements[i].textContent === letter){
+          LIElements[i].classList = 'show letter';
+        }
       }
     }
   }
 }
-

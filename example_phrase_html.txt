@@ -5,7 +5,7 @@
         <li class="hide letter w">w</li>
         <li class="space"> </li>
         <li class="hide letter a">a</li>
-        <li cl"hide letter r">r</li>
+        <li class="hide letter r">r</li>
         <li class="hide letter e">e</li>
         <li class="space"> </li>
         <li class="hide letter y">y</li>
