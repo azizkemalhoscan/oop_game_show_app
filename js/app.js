@@ -42,7 +42,8 @@
 // RANDOM CODE TRY AREA
 
 
-
+let showedElements = document.getElementsByClassName('show letter');
+console.log(showedElements[2]);
 
 
 
@@ -55,14 +56,25 @@
 
 // added an eventlistnere to start the game when start game button clicked.
 let game;
-const overlay = document.getElementById('overlay');
 const button = document.getElementById('btn__reset');
 button.addEventListener('click', () => {
   game = new Game();
+  game.resetBoardGame();
   game.startGame();
-
+  const onScreenKeyboard = document.querySelectorAll('.keyrow button');
+  console.log(onScreenKeyboard);
 })
 
+
+// event listener for screen keyboard
+const qwerty = document.getElementById('qwerty')
+// const onScreenKeyboard = document.querySelectorAll('.keyrow button');
+qwerty.addEventListener('click', (e) => {
+  if(e.target.className === 'key'){
+  game.handleInteraction(e.target);
+  console.log(e.target.textContent);
+  }
+})
 
 
 
