@@ -55,15 +55,12 @@
 
 // added an eventlistnere to start the game when start game button clicked.
 let game;
+const overlay = document.getElementById('overlay');
 const button = document.getElementById('btn__reset');
 button.addEventListener('click', () => {
   game = new Game();
   game.startGame();
-  console.log(game.activePhrase);
-// var LIelements = document.querySelectorAll('li');
-// console.log(LIelements[0].classList);
-// let showedElements = document.getElementsByClassName('hide letter')
-//  console.log(showedElements[1])
+
 })
 
 

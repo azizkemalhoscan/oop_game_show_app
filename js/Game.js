@@ -66,6 +66,30 @@ the phrase or if the game is lost because the player is out of lives.
       return false
     }
   }
+
+  removeLife(){
+    this.missed += 1;
+    const imgHearts = document.querySelectorAll('.tries img');
+    imgHearts[this.missed -1].src = "images/lostHeart.png";
+    if(this.missed === 5){
+      return this.gameOver(false);
+    }
+  }
+
+// this method displays a message regarding win or lose
+  gameOver(gameWon){
+      const overlay = document.getElementById('overlay');
+      const gameOverMessage = document.getElementById('game-over-message');
+      let showedElements = document.getElementsByClassName('show letter');
+      overlay.style.display = 'block';
+    if(gameWon === false){
+      overlay.classList = 'lose';
+      gameOverMessage.textContent = 'Sorry You Lose! Maybe next time.'
+    } else {
+      overlay.classList = 'win';
+      gameOverMessage.textContent = "YOU WON GREAT!";
+    }
+  }
 }
 
 
