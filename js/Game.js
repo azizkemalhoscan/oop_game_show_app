@@ -6,18 +6,18 @@ class Game {
   constructor(){
     this.missed = 0;
     this.phrases = this.createPhrases();
-    this.activePhrase = this.getRandomPhrase();
+    this.activePhrase = null;
   }
 
 
 //  createPhrases method is a class method and creates an array of 5 phrases.
   createPhrases(){
     const phraseList = [
-    new Phrase('Programs must be written for people to read and only incidentally for machines to execute'),
-    new Phrase('Peace in home peace in the world'),
+    new Phrase('yurtta sulh cihanda sulh'),
+    new Phrase('hayatta en hakiki sey mursit ilimdir'),
     new Phrase('Sanatsiz kalan bir milletin hayat damarlarindan biri kopmus demektir'),
-    new Phrase('Build a door'),
-    new Phrase('herkes kendine yakisani giymeli')
+    new Phrase('eger bir gun benim sozlerim bilimle ters duserse bilimi secin'),
+    new Phrase('Benim naciz vucudum bir gun elbet toprak olacaktir fakat türkiye umhuriyeti sonsuza dek yasayacaktir')
     ]
     return phraseList
   }
@@ -30,8 +30,10 @@ class Game {
   startGame(){
     const overlay = document.getElementById('overlay');
     overlay.style.display = 'none';
-    var phrase = this.activePhrase;
-    phrase.addPhraseToDisplay();
+    this.activePhrase = this.getRandomPhrase();
+    // var phrase = this.activePhrase;
+    // activephrase is set to random phrase
+    this.activePhrase.addPhraseToDisplay();
   }
 
 /* This method will handle several supporting methods for the game
@@ -44,17 +46,22 @@ the phrase or if the game is lost because the player is out of lives.
  If the game is won or lost, a message should be displayed on screen.
 */
   handleInteraction(button){
+    var letter = button.textContent
     console.log(button);
     button.disabled = true;
-    if(this.activePhrase.phrase.includes(button.textContent)){
+    if(this.activePhrase.checkLetter(letter)){
       button.classList = 'chosen';
       this.activePhrase.showMatchedLetter(button.textContent);
+      this.checkForWin();
     } else {
       button.classList = 'wrong';
       this.removeLife();
     }
     this.checkForWin();
   }
+
+// this.activePhrase.phrase.includes(button.textContent
+
 
   //  method to check if all letters are revealeds
   // THIS MAY NOT BE WORKING PROPERLY
